@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "e98ff374-2e46-4912-a257-9c09254a8c19",
+		"name": "KeyCloak",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16693935"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "dRuUhjxJhBfvLBJwuXF3TTVmSU4pmyTg",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "2051120273",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "order:view",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "keycloak.test/realms/master/protocol/openid-connect/token",
+					"host": [
+						"keycloak",
+						"test"
+					],
+					"path": [
+						"realms",
+						"master",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "krakend.test/v1/orders",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJsLW1ZV2NiSDRiRkRxRWdxVERQQ0JBazd0TnpkZjE0SEp4aUtEbmJLbkJrIn0.eyJleHAiOjE2OTgzMTQyNjMsImlhdCI6MTY5ODMxNDIwMywianRpIjoiNWFkNjg5MWQtZTcxMC00ZTlkLWFmOTMtZTQ4NzJlMzk1NDE4IiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLnRlc3QvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI0ZjI4ZWI0Zi0wOThjLTRhMGUtOGNkOS1jYmY5ZDk4YTMyNjIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ0ZXN0Iiwic2Vzc2lvbl9zdGF0ZSI6IjA1Y2VhZjcyLWQ1NTItNGViZC1hYmYxLTVjNTM0MWU5YmJkNCIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo4MDgwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJjdXN0b21lciJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgb3JkZXI6dmlldyBwcm9maWxlIiwic2lkIjoiMDVjZWFmNzItZDU1Mi00ZWJkLWFiZjEtNWM1MzQxZTliYmQ0IiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiIyMDUxMTIwMjczIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoiIn0.WzFKpJeoXa5XgjXwSUvKMt1n5MdQBAbIrNGYmFmMdwR6qbHIt7AHJziCi3scAJRh0_zLzDr3gSoSKgImYbph6WX10kYrZMumuN9_A0XIAjlsQx4lykS4A0lThow9nKTZb6oPBUyticmWcE2nI3zfZPPirPlRI6ONMWn4VRMZw0JWM7oye6afH6DPj3uCaNOVvfeQ_XnFFEIKFUfzgPSRmaYkK4F0-t4JqEJ4sRthmGJBENQgoePi0gYCN-1p43xtN34QRgQYoDMfuBZVcK0uuSAvmCk9hkMKnx17bXiY5l0YcNa3yPqc5AAWsjynd83tRfdp6UJrQpv4FvqimJQeeg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "krakend.test/v1/orders",
+					"host": [
+						"krakend",
+						"test"
+					],
+					"path": [
+						"v1",
+						"orders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "krakend.test/v1/customers/profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJsLW1ZV2NiSDRiRkRxRWdxVERQQ0JBazd0TnpkZjE0SEp4aUtEbmJLbkJrIn0.eyJleHAiOjE2OTgzMTQwMTEsImlhdCI6MTY5ODMxMzk1MSwianRpIjoiYTg4ODdkZTMtM2ZhMi00YzY3LTgwOTktN2E5NzIzMWE4YzkyIiwiaXNzIjoiaHR0cDovL2tleWNsb2FrLnRlc3QvcmVhbG1zL21hc3RlciIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI0ZjI4ZWI0Zi0wOThjLTRhMGUtOGNkOS1jYmY5ZDk4YTMyNjIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJ0ZXN0Iiwic2Vzc2lvbl9zdGF0ZSI6IjBjYzgxZGNmLWJkNWMtNGQzNC1iOGRlLTY1MTJjMGIwMzM5MyIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2xvY2FsaG9zdDo4MDgwIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJkZWZhdWx0LXJvbGVzLW1hc3RlciIsIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iLCJjdXN0b21lciJdfSwicmVzb3VyY2VfYWNjZXNzIjp7ImFjY291bnQiOnsicm9sZXMiOlsibWFuYWdlLWFjY291bnQiLCJtYW5hZ2UtYWNjb3VudC1saW5rcyIsInZpZXctcHJvZmlsZSJdfX0sInNjb3BlIjoiZW1haWwgb3JkZXI6dmlldyBwcm9maWxlIiwic2lkIjoiMGNjODFkY2YtYmQ1Yy00ZDM0LWI4ZGUtNjUxMmMwYjAzMzkzIiwiZW1haWxfdmVyaWZpZWQiOmZhbHNlLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiIyMDUxMTIwMjczIiwiZ2l2ZW5fbmFtZSI6IiIsImZhbWlseV9uYW1lIjoiIn0.rN8PKCZUi2EPW0P2hrwAoj_ohMt2JQe9w4YEdE4h1h5YSAAIl02gHcawrWoLpen_91_9QxU8nuB4ZMoJVF8XmRNY2SdYggXRpAeXXD6w4BMAmrRF_CIkUkX5oBhPhm9i-x5fjeuL7IjY1ceo2-uGlaPTB0H6ijnvfFL4F2m6mib34JKn_Hy9fre_1tuW28SFVuGQU5vob_BmtzeM6MpO4Nh9xKo6RABkA7xYFGquFGtvQGYNoXX-V9Od_i3u_uDu8MlDaYb6aa5rBe0moFb35oc-TSmaVStTCVjRhr6EpaClVPSoMVw7M-HS67-J3iku82qCgpfKEkFaKZ3JgBJkCQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"$schema\": \"https://www.krakend.io/schema/krakend.json\",\n    \"version\": 3,\n    \"name\": \"KrakenD - API Gateway\",\n    \"timeout\": \"4000ms\",\n    \"extra_config\": {\n        \"router\": {\n            \"auto_options\": true,\n            \"return_error_msg\": true\n        },\n        \"security/cors\": {\n            \"allow_methods\": [\n                \"GET\",\n                \"HEAD\",\n                \"PUT\",\n                \"POST\",\n                \"OPTIONS\",\n                \"PATCH\",\n                \"DELETE\"\n            ],\n            \"allow_headers\": [\n                \"Origin\",\n                \"Authorization\",\n                \"Content-Type\",\n                \"Cache-Control\",\n                \"Pragma\",\n                \"Accept-Language\",\n                \"Access-Control-Allow-Origin\"\n            ],\n            \"debug\": true\n        }\n    },\n    \"endpoints\": [\n        {\n            \"endpoint\": \"/v1/customers/profile\",\n            \"method\": \"GET\",\n            \"backend\": [\n                {\n                    \"url_pattern\": \"/v1/customers/profile\",\n                    \"encoding\": \"json\",\n                    \"host\": [\n                        \"http://customer-service\"\n                    ]\n                }\n            ],\n            \"extra_config\": {\n                \"backend/http\": {\n                    \"return_error_code\": true\n                },\n                \"auth/validator\": {\n                    \"alg\": \"RS256\",\n                    \"jwk_url\": \"http://keycloak:8080/realms/master/protocol/openid-connect/certs\",\n                    \"disable_jwk_security\": true,\n                    \"operation_debug\": true,\n                    \"propagate_claims\": [\n                        [\n                            \"sub\",\n                            \"x-user-id\"\n                        ]\n                    ]\n                }\n            },\n            \"input_headers\": [\n                \"Origin\",\n                \"Authorization\",\n                \"Content-Type\",\n                \"Cache-Control\",\n                \"Pragma\",\n                \"Accept-Language\",\n                \"Access-Control-Allow-Origin\"\n            ]\n        },\n        {\n            \"endpoint\": \"/v1/orders/\",\n            \"method\": \"GET\",\n            \"backend\": [\n                {\n                    \"url_pattern\": \"/v1/orders/\",\n                    \"encoding\": \"json\",\n                    \"host\": [\n                        \"http://order-service\"\n                    ]\n                }\n            ],\n            \"extra_config\": {\n                \"backend/http\": {\n                    \"return_error_code\": true\n                },\n                \"auth/validator\": {\n                    \"alg\": \"RS256\",\n                    \"jwk_url\": \"http://keycloak:8080/realms/master/protocol/openid-connect/certs\",\n                    \"disable_jwk_security\": true,\n                    \"operation_debug\": true,\n                    \"propagate_claims\": [\n                        [\n                            \"sub\",\n                            \"x-user-id\"\n                        ]\n                    ],\n                    \"scopes\": [\n                        \"order:view\"\n                    ]\n                }\n            },\n            \"input_headers\": [\n                \"Origin\",\n                \"Authorization\",\n                \"Content-Type\",\n                \"Cache-Control\",\n                \"Pragma\",\n                \"Accept-Language\",\n                \"Access-Control-Allow-Origin\"\n            ]\n        }\n    ],\n    \"output_encoding\": \"no-op\",\n    \"debug_endpoint\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "krakend.test/v1/customers/profile",
+					"host": [
+						"krakend",
+						"test"
+					],
+					"path": [
+						"v1",
+						"customers",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,119 @@
+{
+    "$schema": "https://www.krakend.io/schema/krakend.json",
+    "version": 3,
+    "name": "KrakenD - API Gateway",
+    "timeout": "4000ms",
+    "extra_config": {
+        "router": {
+            "auto_options": true,
+            "return_error_msg": true
+        },
+        "security/cors": {
+            "allow_methods": [
+                "GET",
+                "HEAD",
+                "PUT",
+                "POST",
+                "OPTIONS",
+                "PATCH",
+                "DELETE"
+            ],
+            "allow_headers": [
+                "Origin",
+                "Authorization",
+                "Content-Type",
+                "Cache-Control",
+                "Pragma",
+                "Accept-Language",
+                "Access-Control-Allow-Origin"
+            ],
+            "debug": true
+        }
+    },
+    "endpoints": [
+        {
+            "endpoint": "/v1/customers/profile",
+            "method": "GET",
+            "backend": [
+                {
+                    "url_pattern": "/v1/customers/profile",
+                    "encoding": "json",
+                    "host": [
+                        "http://customer-service"
+                    ]
+                }
+            ],
+            "extra_config": {
+                "backend/http": {
+                    "return_error_code": true
+                },
+                "auth/validator": {
+                    "alg": "RS256",
+                    "jwk_url": "http://keycloak:8080/realms/master/protocol/openid-connect/certs",
+                    "disable_jwk_security": true,
+                    "operation_debug": true,
+                    "propagate_claims": [
+                        [
+                            "sub",
+                            "x-user-id"
+                        ]
+                    ]
+                }
+            },
+            "input_headers": [
+                "Origin",
+                "Authorization",
+                "Content-Type",
+                "Cache-Control",
+                "Pragma",
+                "Accept-Language",
+                "Access-Control-Allow-Origin"
+            ]
+        },
+        {
+            "endpoint": "/v1/orders/",
+            "method": "GET",
+            "backend": [
+                {
+                    "url_pattern": "/v1/orders/",
+                    "encoding": "json",
+                    "host": [
+                        "http://order-service"
+                    ]
+                }
+            ],
+            "extra_config": {
+                "backend/http": {
+                    "return_error_code": true
+                },
+                "auth/validator": {
+                    "alg": "RS256",
+                    "jwk_url": "http://keycloak:8080/realms/master/protocol/openid-connect/certs",
+                    "disable_jwk_security": true,
+                    "operation_debug": true,
+                    "propagate_claims": [
+                        [
+                            "sub",
+                            "x-user-id"
+                        ]
+                    ],
+                    "scopes_key": "scope",
+                    "scopes": [
+                        "order:view"
+                    ]
+                }
+            },
+            "input_headers": [
+                "Origin",
+                "Authorization",
+                "Content-Type",
+                "Cache-Control",
+                "Pragma",
+                "Accept-Language",
+                "Access-Control-Allow-Origin"
+            ]
+        }
+    ],
+    "output_encoding": "no-op",
+    "debug_endpoint": true
+}

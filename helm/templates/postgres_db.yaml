@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: default
+  labels:
+    app: postgres-deployment
+spec:
+  selector:
+    matchLabels:
+      app: postgres-deployment
+  template:
+    metadata:
+      labels:
+        app: postgres-deployment
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          lifecycle:
+            postStart:
+              exec:
+                command: ["/bin/sh", "-c",
+                  "until pg_isready -h localhost -p 5432; do echo waiting for database; sleep 2; done; 
+                  psql -U postgres -c \"CREATE DATABASE customer_service;\";
+                  psql -U postgres -c \"CREATE DATABASE order_service;\";"]
+          env:
+            - name: POSTGRES_PASSWORD
+              value: 'postgres'
+          resources:
+            limits:
+              memory: '1024Mi'
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+  namespace: default
+  labels:
+    app: postgres-deployment
+spec:
+  selector:
+    app: postgres-deployment
+  ports:
+    - name: postgres-service-port
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
+  type: LoadBalancer
+  loadBalancerIP: ''
